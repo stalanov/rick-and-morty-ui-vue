@@ -1,10 +1,10 @@
 <template>
-  <HeaderView />
+  <Header />
   <router-view />
 </template>
 
 <script setup lang="ts">
-import HeaderView from '@/components/HeaderView.vue';
+import Header from '@/components/Header.vue';
 </script>
 
 <style lang="scss">
