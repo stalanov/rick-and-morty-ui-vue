@@ -1,8 +1,8 @@
 <template>
   <n-layout-footer class="footer" bordered>
     <div>{{ year }} — GridU — Vue.Js</div>
-    <a class="footer-github" href="https://github.com/gridu/Vue.js-Sergey-Talanov" target="_blank">
-      <n-icon :size="22"><LogoGithub /></n-icon>
+    <a class="footer__github" href="https://github.com/gridu/Vue.js-Sergey-Talanov" target="_blank">
+      <n-icon :size="22" :component="LogoGithub" />
     </a>
   </n-layout-footer>
 </template>
@@ -20,11 +20,9 @@ const year = new Date().getFullYear();
   line-height: 2em;
   text-align: center;
 
-  .footer-github {
-    display: flex;
-    align-items: center;
+  &__github {
+    @include vertical-align;
     position: absolute;
-    height: 100%;
     right: 1em;
     top: 0;
     text-decoration: none;

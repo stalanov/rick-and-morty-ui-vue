@@ -15,6 +15,7 @@ import Footer from '@/components/Footer.vue';
 
 <style lang="scss">
 @import './styles/reset';
+
 #app {
   font-family: v-sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
