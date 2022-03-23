@@ -1,5 +1,5 @@
-import { h } from 'vue';
-import { RouterLink } from 'vue-router';
+import { computed, h } from 'vue';
+import { RouteLocationNormalizedLoaded, RouterLink } from 'vue-router';
 import { MenuOption } from 'naive-ui';
 import { Home, Favorite } from '@vicons/carbon';
 
@@ -35,3 +35,5 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(Favorite),
   },
 ];
+
+export const currentRouteName = (route: RouteLocationNormalizedLoaded) => computed(() => route.name?.toString());

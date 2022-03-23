@@ -3,14 +3,18 @@
     <RouterLink class="header-logo" :to="{ name: 'characters' }">
       <img class="header-logo-image" src="../assets/logo.png" />
     </RouterLink>
-    <n-menu mode="horizontal" :options="menuOptions" />
+    <n-menu mode="horizontal" :value="activeKey" :options="menuOptions" />
   </n-layout-header>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import { NLayoutHeader, NMenu } from 'naive-ui';
 
-import { menuOptions } from '@/helpers/navigation';
+import { currentRouteName, menuOptions } from '@/helpers/navigation';
+
+const route = useRoute();
+const activeKey = currentRouteName(route);
 </script>
 
 <style scoped lang="scss">

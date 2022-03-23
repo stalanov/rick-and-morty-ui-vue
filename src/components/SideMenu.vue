@@ -12,7 +12,7 @@
         @expand="collapsed = false"
       >
         <n-menu
-          v-model:value="activeKey"
+          :value="activeKey"
           :collapsed="collapsed"
           :collapsed-width="64"
           :collapsed-icon-size="22"
@@ -28,10 +28,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { NSpace, NLayout, NLayoutSider, NMenu } from 'naive-ui';
 
-import { menuOptions } from '../helpers/navigation';
+import { currentRouteName, menuOptions } from '@/helpers/navigation';
 
-const activeKey = ref<string | null>(null);
+const route = useRoute();
+const activeKey = currentRouteName(route);
 const collapsed = ref(true);
 </script>
