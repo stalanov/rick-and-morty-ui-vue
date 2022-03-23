@@ -16,7 +16,7 @@
           :collapsed="collapsed"
           :collapsed-width="64"
           :collapsed-icon-size="22"
-          :options="menuOptions"
+          :options="navOptions"
         />
       </n-layout-sider>
       <n-layout>
@@ -31,7 +31,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { NSpace, NLayout, NLayoutSider, NMenu } from 'naive-ui';
 
-import { currentRouteName, menuOptions } from '@/helpers/navigation';
+import { currentRouteName, navOptions } from '@/helpers/navigation';
 
 const route = useRoute();
 const activeKey = currentRouteName(route);
