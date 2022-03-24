@@ -3,7 +3,7 @@ import { RouteLocationNormalizedLoaded, RouterLink } from 'vue-router';
 import { MenuOption } from 'naive-ui';
 import { Home, Favorite } from '@vicons/carbon';
 
-import { RouteNames } from '@/router/types';
+import { RouteName } from '@/router/types';
 import { renderIcon } from './render';
 
 export const navOptions: MenuOption[] = [
@@ -13,12 +13,12 @@ export const navOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            name: RouteNames.CHARACTERS,
+            name: RouteName.CHARACTERS,
           },
         },
         { default: () => 'Characters' }
       ),
-    key: RouteNames.CHARACTERS,
+    key: RouteName.CHARACTERS,
     icon: renderIcon(Home),
   },
   {
@@ -27,12 +27,12 @@ export const navOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            name: RouteNames.FAVORITES,
+            name: RouteName.FAVORITES,
           },
         },
         { default: () => 'Favorites' }
       ),
-    key: RouteNames.FAVORITES,
+    key: RouteName.FAVORITES,
     icon: renderIcon(Favorite),
   },
 ];

@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme="darkTheme">
+  <n-config-provider :theme="theme">
     <Header />
     <SideMenu />
     <Footer />
@@ -7,10 +7,22 @@
 </template>
 
 <script setup lang="ts">
-import { darkTheme, NConfigProvider } from 'naive-ui';
+import { computed } from 'vue';
+import { darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
+import { useStore } from 'vuex';
+
 import Header from '@/components/Header.vue';
 import SideMenu from '@/components/SideMenu.vue';
 import Footer from '@/components/Footer.vue';
+import { Theme, key } from '@/store/types';
+
+const themeHash = {
+  [Theme.LIGHT]: lightTheme,
+  [Theme.DARK]: darkTheme,
+};
+
+const store = useStore(key);
+const theme = computed(() => themeHash[store.state.theme]);
 </script>
 
 <style lang="scss">

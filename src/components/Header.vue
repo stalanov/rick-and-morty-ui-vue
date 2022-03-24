@@ -16,8 +16,8 @@
 import { useRoute } from 'vue-router';
 import { NLayoutHeader, NMenu } from 'naive-ui';
 
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 import { currentRouteName, navOptions } from '@/helpers/navigation';
-import ThemeSwitcher from './ThemeSwitcher.vue';
 
 const route = useRoute();
 const activeKey = currentRouteName(route);

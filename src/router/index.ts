@@ -1,26 +1,26 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import { RouteNames } from './types';
+import { RouteName } from './types';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: RouteNames.HOME,
-    redirect: { name: RouteNames.CHARACTERS },
+    name: RouteName.HOME,
+    redirect: { name: RouteName.CHARACTERS },
   },
   {
     path: '/characters',
-    name: RouteNames.CHARACTERS,
+    name: RouteName.CHARACTERS,
     component: () => import(/* webpackChunkName: "characters" */ '../views/CharactersView.vue'),
   },
   {
     path: '/character/:id',
-    name: RouteNames.CHARACTER,
+    name: RouteName.CHARACTER,
     component: () => import(/* webpackChunkName: "characters" */ '../views/CharacterView.vue'),
   },
   {
     path: '/favorites',
-    name: RouteNames.FAVORITES,
+    name: RouteName.FAVORITES,
     component: () => import(/* webpackChunkName: "favorites" */ '../views/FavoritesView.vue'),
   },
 ];

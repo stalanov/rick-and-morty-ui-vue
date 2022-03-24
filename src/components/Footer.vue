@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
     right: 1em;
     top: 0;
     text-decoration: none;
-    color: inherit;
+    color: var(--n-text-color);
   }
 }
 </style>
