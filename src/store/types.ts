@@ -14,4 +14,5 @@ export enum Theme {
 
 export enum Mutation {
   SWITCH_THEME = 'SWITCH_THEME',
+  SET_STORE = 'SET_STORE',
 }
