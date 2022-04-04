@@ -8,6 +8,8 @@
         :width="180"
         :collapsed="collapsed"
         show-trigger
+        :trigger-style="triggerStyle"
+        :collapsed-trigger-style="triggerStyle"
         @collapse="collapsed = true"
         @expand="collapsed = false"
       >
@@ -36,4 +38,5 @@ import { currentRouteName, navOptions } from '@/helpers/navigation';
 const route = useRoute();
 const activeKey = currentRouteName(route);
 const collapsed = ref(true);
+const triggerStyle = { top: '55px' };
 </script>

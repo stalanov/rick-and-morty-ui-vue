@@ -9,7 +9,7 @@ interface ResponseInfo {
   prev: string | null;
 }
 
-enum CharacterStatus {
+export enum CharacterStatus {
   ALIVE = 'Alive',
   DEAD = 'Dead',
   UNKNOWN = 'unknown',
@@ -27,10 +27,11 @@ interface ShortLocation {
   url: string;
 }
 
-interface Character {
+export interface Character {
   id: number;
   name: string;
   status: CharacterStatus;
+  species: string;
   type: string;
   gender: CharacterGender;
   origin: ShortLocation;
