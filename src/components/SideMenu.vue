@@ -2,6 +2,7 @@
   <n-space vertical>
     <n-layout has-sider>
       <n-layout-sider
+        class="side-menu__layout-sider"
         bordered
         collapse-mode="width"
         :collapsed-width="64"
@@ -40,3 +41,15 @@ const activeKey = currentRouteName(route);
 const collapsed = ref(true);
 const triggerStyle = { top: '55px' };
 </script>
+
+<style scoped lang="scss">
+.side-menu {
+  &__layout-sider {
+    display: none;
+
+    @include respond-to('s') {
+      display: block;
+    }
+  }
+}
+</style>

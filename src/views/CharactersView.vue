@@ -1,16 +1,22 @@
 <template>
   <div class="characters-view">
-    <n-grid x-gap="12" y-gap="12" cols="1 s:2 m:3 l:4 xl:4 2xl:4" responsive="screen">
-      <n-gi v-for="character in characters" :key="character.id">
-        <CharacterCard
-          :id="character.id"
-          :image="character.image"
-          :name="character.name"
-          :species="character.species"
-          :status="character.status"
-        />
-      </n-gi>
-    </n-grid>
+    <PagePagination class="characters-view__pagination" :page-slot="7" />
+
+    <div class="characters-view__grid">
+      <n-grid x-gap="12" y-gap="12" cols="2 s:3 m:4 l:5 xl:5 2xl:5" responsive="screen">
+        <n-gi v-for="character in characters" :key="character.id">
+          <CharacterCard
+            :id="character.id"
+            :image="character.image"
+            :name="character.name"
+            :species="character.species"
+            :status="character.status"
+          />
+        </n-gi>
+      </n-grid>
+    </div>
+
+    <PagePagination class="characters-view__pagination" :page-slot="7" />
   </div>
 </template>
 
@@ -19,6 +25,7 @@ import { onMounted, ref } from 'vue';
 import { NGi, NGrid } from 'naive-ui';
 
 import CharacterCard from '@/components/CharacterCard.vue';
+import PagePagination from '@/components/PagePagination.vue';
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';
 
@@ -33,7 +40,16 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .characters-view {
-  max-width: 1280px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__grid {
+    max-width: map-get($breakpoints, 'l');
+  }
+
+  &__pagination {
+    margin: 2em 0;
+  }
 }
 </style>

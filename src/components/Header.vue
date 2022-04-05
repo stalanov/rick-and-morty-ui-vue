@@ -29,6 +29,10 @@ const activeKey = currentRouteName(route);
 
   &__menu {
     position: relative;
+    text-align: start;
+    @include respond-to('s') {
+      text-align: center;
+    }
   }
 
   &__logo {
