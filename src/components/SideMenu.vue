@@ -22,7 +22,7 @@
           :options="navOptions"
         />
       </n-layout-sider>
-      <n-layout>
+      <n-layout id="main">
         <router-view />
       </n-layout>
     </n-layout>

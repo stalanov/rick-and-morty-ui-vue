@@ -1,7 +1,7 @@
 import { computed, h } from 'vue';
 import { RouteLocationNormalizedLoaded, RouterLink } from 'vue-router';
 import { MenuOption } from 'naive-ui';
-import { Home, Favorite } from '@vicons/carbon';
+import { Events, Favorite } from '@vicons/carbon';
 
 import { RouteName } from '@/router/types';
 import { renderIcon } from './render';
@@ -19,7 +19,7 @@ export const navOptions: MenuOption[] = [
         { default: () => 'Characters' }
       ),
     key: RouteName.CHARACTERS,
-    icon: renderIcon(Home),
+    icon: renderIcon(Events),
   },
   {
     label: () =>
@@ -38,3 +38,15 @@ export const navOptions: MenuOption[] = [
 ];
 
 export const currentRouteName = (route: RouteLocationNormalizedLoaded) => computed(() => route.name?.toString());
+
+export const getCurrentPage = (route: RouteLocationNormalizedLoaded) =>
+  computed(() => {
+    const { page } = route.query;
+    const currentPage = Array.isArray(page) ? page[0] : page;
+
+    if (!currentPage) {
+      return 1;
+    }
+
+    return parseInt(currentPage, 10) || 1;
+  });

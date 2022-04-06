@@ -1,9 +1,17 @@
 <template>
   <div class="characters-view">
-    <PagePagination class="characters-view__pagination" :page-slot="7" />
+    <n-pagination
+      class="characters-view__pagination"
+      :page="page"
+      :page-count="pageCount"
+      :page-slot="7"
+      @update-page="changePage"
+    />
 
     <div class="characters-view__grid">
-      <n-grid x-gap="12" y-gap="12" cols="2 s:3 m:4 l:5 xl:5 2xl:5" responsive="screen">
+      <n-spin v-if="loading" :size="100" />
+
+      <n-grid v-else x-gap="12" y-gap="12" cols="2 s:3 m:4 l:5 xl:5 2xl:5" responsive="screen">
         <n-gi v-for="character in characters" :key="character.id">
           <CharacterCard
             :id="character.id"
@@ -16,26 +24,56 @@
       </n-grid>
     </div>
 
-    <PagePagination class="characters-view__pagination" :page-slot="7" />
+    <n-pagination
+      class="characters-view__pagination"
+      :page="page"
+      :page-count="pageCount"
+      :page-slot="7"
+      @update-page="changePage"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { NGi, NGrid } from 'naive-ui';
+import { ref, watchEffect } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { NGi, NGrid, NPagination, NSpin } from 'naive-ui';
 
 import CharacterCard from '@/components/CharacterCard.vue';
-import PagePagination from '@/components/PagePagination.vue';
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';
+import { getCurrentPage } from '@/helpers/navigation';
+import { RouteName } from '@/router/types';
+
+const route = useRoute();
+const router = useRouter();
+const page = getCurrentPage(route);
 
 const characters = ref<Character[]>([]);
+const pageCount = ref<number>(1);
+const loading = ref<boolean>(true);
 
-onMounted(() => {
-  CharacterService.getCharacters(1).then(({ data }) => {
-    characters.value = data.results;
-  });
+watchEffect(() => {
+  loading.value = true;
+  CharacterService.getCharacters(page.value)
+    .then(({ data }) => {
+      characters.value = data.results;
+      pageCount.value = data.info.pages;
+    })
+    .finally(() => {
+      loading.value = false;
+    });
 });
+
+function changePage(newPage: number) {
+  router.push({
+    name: RouteName.CHARACTERS,
+    query: {
+      ...route.query,
+      page: newPage,
+    },
+  });
+}
 </script>
 
 <style scoped lang="scss">
@@ -46,6 +84,7 @@ onMounted(() => {
 
   &__grid {
     max-width: map-get($breakpoints, 'l');
+    min-height: 1000px;
   }
 
   &__pagination {

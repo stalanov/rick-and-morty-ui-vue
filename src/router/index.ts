@@ -33,6 +33,17 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to) {
+    if (to.redirectedFrom?.name === RouteName.HOME) {
+      return {
+        top: 0,
+      };
+    }
+
+    return {
+      el: '#main',
+    };
+  },
 });
 
 export default router;

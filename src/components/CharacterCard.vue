@@ -1,7 +1,10 @@
 <template>
   <n-card class="character-card" :hoverable="true">
     <template #cover>
-      <img :src="props.image" />
+      <div class="character-card__cover">
+        <img src="@/assets/image-placeholder-300.png" />
+        <img class="character-card__image" :src="props.image" />
+      </div>
     </template>
     <template #header>
       <n-ellipsis>
@@ -18,7 +21,6 @@
             <Favorite />
           </n-icon>
         </template>
-        Add to Favorites
       </n-button>
     </template>
   </n-card>
@@ -45,6 +47,16 @@ const props = defineProps<CharacterCardProps>();
 .character-card {
   :deep(.n-card-header__main) {
     width: 100%;
+  }
+
+  &__cover {
+    position: relative;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>
