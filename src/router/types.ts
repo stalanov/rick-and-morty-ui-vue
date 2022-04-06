@@ -1,6 +1,7 @@
 export enum RouteName {
-  CHARACTERS = 'characters',
-  FAVORITES = 'favorites',
-  CHARACTER = 'character',
-  HOME = 'home',
+  CHARACTERS = 'Characters',
+  FAVORITES = 'Favorites',
+  CHARACTER = 'Character',
+  HOME = 'Home',
+  NOT_FOUND = 'NotFound',
 }

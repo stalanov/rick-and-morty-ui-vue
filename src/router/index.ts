@@ -11,17 +11,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/characters',
     name: RouteName.CHARACTERS,
-    component: () => import(/* webpackChunkName: "characters" */ '../views/CharactersView.vue'),
+    component: () => import(/* webpackChunkName: "characters" */ '@/views/CharactersView.vue'),
   },
   {
     path: '/character/:id',
     name: RouteName.CHARACTER,
-    component: () => import(/* webpackChunkName: "characters" */ '../views/CharacterView.vue'),
+    component: () => import(/* webpackChunkName: "characters" */ '@/views/CharacterView.vue'),
   },
   {
     path: '/favorites',
     name: RouteName.FAVORITES,
-    component: () => import(/* webpackChunkName: "favorites" */ '../views/FavoritesView.vue'),
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/FavoritesView.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: RouteName.NOT_FOUND,
+    component: () => import(/* webpackChunkName: "not-found" */ '@/views/NotFoundView.vue'),
   },
 ];
 

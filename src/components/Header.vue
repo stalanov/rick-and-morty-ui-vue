@@ -1,6 +1,6 @@
 <template>
   <n-layout-header class="header" bordered>
-    <RouterLink class="header__logo" :to="{ name: 'characters' }">
+    <RouterLink class="header__logo" :to="{ name: RouteName.HOME }">
       <img class="header__logo-image" src="../assets/logo.png" />
     </RouterLink>
     <div class="header__menu">
@@ -18,6 +18,7 @@ import { NLayoutHeader, NMenu } from 'naive-ui';
 
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 import { currentRouteName, navOptions } from '@/helpers/navigation';
+import { RouteName } from '@/router/types';
 
 const route = useRoute();
 const activeKey = currentRouteName(route);
