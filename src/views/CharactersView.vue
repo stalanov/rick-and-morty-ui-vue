@@ -1,5 +1,5 @@
 <template>
-  <div class="characters-view">
+  <n-space class="characters-view" vertical align="center">
     <n-pagination
       class="characters-view__pagination"
       :page="page"
@@ -31,13 +31,13 @@
       :page-slot="7"
       @update-page="changePage"
     />
-  </div>
+  </n-space>
 </template>
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { NGi, NGrid, NPagination, NSpin } from 'naive-ui';
+import { NGi, NGrid, NPagination, NSpin, NSpace } from 'naive-ui';
 
 import CharacterCard from '@/components/CharacterCard.vue';
 import CharacterService from '@/service/CharacterService';
@@ -55,7 +55,7 @@ const loading = ref<boolean>(true);
 
 watchEffect(() => {
   loading.value = true;
-  CharacterService.getCharacters(page.value)
+  CharacterService.getCharacters({ page: page.value })
     .then(({ data }) => {
       characters.value = data.results;
       pageCount.value = data.info.pages;
@@ -78,10 +78,6 @@ function changePage(newPage: number) {
 
 <style scoped lang="scss">
 .characters-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   &__grid {
     max-width: map-get($breakpoints, 'l');
     min-height: 1000px;

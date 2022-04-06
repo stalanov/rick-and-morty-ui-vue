@@ -37,10 +37,12 @@ export const navOptions: MenuOption[] = [
   },
 ];
 
-export const currentRouteName = (route: RouteLocationNormalizedLoaded) => computed(() => route.name?.toString());
+export function currentRouteName(route: RouteLocationNormalizedLoaded) {
+  return computed(() => route.name?.toString());
+}
 
-export const getCurrentPage = (route: RouteLocationNormalizedLoaded) =>
-  computed(() => {
+export function getCurrentPage(route: RouteLocationNormalizedLoaded) {
+  return computed(() => {
     const { page } = route.query;
     const currentPage = Array.isArray(page) ? page[0] : page;
 
@@ -50,3 +52,4 @@ export const getCurrentPage = (route: RouteLocationNormalizedLoaded) =>
 
     return parseInt(currentPage, 10) || 1;
   });
+}

@@ -12,7 +12,7 @@
       </n-ellipsis>
     </template>
 
-    {{ props.species }} - {{ props.status }}
+    <n-ellipsis> {{ props.species }} - {{ props.status }} </n-ellipsis>
 
     <template #action>
       <n-button>
