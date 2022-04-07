@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-import Router from '@/router';
-import { RouteName } from '@/router/types';
-
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
 export function getQueryString<T>(params: T): string {
-  return Object.entries(params).reduce((acc, [key, value]) => `${acc}&${key}=${value}`, '');
+  return Object.entries(params)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
 }
 
 const api = axios.create({
@@ -24,7 +23,7 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 404) {
-      Router.push({ name: RouteName.NOT_FOUND });
+      return Promise.resolve();
     }
     return Promise.reject(error);
   }

@@ -11,14 +11,14 @@ export enum CharacterStatus {
   UNKNOWN = 'unknown',
 }
 
-enum CharacterGender {
+export enum CharacterGender {
   MALE = 'Male',
   FEMALE = 'Female',
   GENDERLESS = 'Genderless',
   UNKNOWN = 'unknown',
 }
 
-enum CharacterSpecies {
+export enum CharacterSpecies {
   HUMAN = 'Human',
   HUMANOID = 'Humanoid',
   ALIEN = 'Alien',
@@ -59,7 +59,7 @@ export interface CharacterResponse {
 export interface CharacterRequest {
   page: number;
   name?: string;
-  status?: CharacterStatus;
-  species?: CharacterSpecies;
-  gender?: CharacterGender;
+  status?: string;
+  species?: string;
+  gender?: string;
 }

@@ -1,9 +1,10 @@
-import { computed, h } from 'vue';
-import { RouteLocationNormalizedLoaded, RouterLink } from 'vue-router';
+import { computed, ComputedRef, h } from 'vue';
+import { LocationQueryValue, RouteLocationNormalizedLoaded, RouterLink } from 'vue-router';
 import { MenuOption } from 'naive-ui';
 import { Events, Favorite } from '@vicons/carbon';
 
 import { RouteName } from '@/router/types';
+import { CharacterRequest } from '@/service/types';
 import { renderIcon } from './render';
 
 export const navOptions: MenuOption[] = [
@@ -41,15 +42,23 @@ export function currentRouteName(route: RouteLocationNormalizedLoaded) {
   return computed(() => route.name?.toString());
 }
 
-export function getCurrentPage(route: RouteLocationNormalizedLoaded) {
+type FlatLocationQuery = { [key: string]: LocationQueryValue };
+
+export function getQueryParams(route: RouteLocationNormalizedLoaded): ComputedRef<CharacterRequest> {
   return computed(() => {
-    const { page } = route.query;
-    const currentPage = Array.isArray(page) ? page[0] : page;
+    const { query } = route;
+    const flatQuery = Object.entries(query).reduce<FlatLocationQuery>((acc, [key, value]) => {
+      return { ...acc, [key]: Array.isArray(value) ? value[0] : value };
+    }, {});
 
-    if (!currentPage) {
-      return 1;
-    }
+    const { page, name, status, species, gender } = flatQuery;
 
-    return parseInt(currentPage, 10) || 1;
+    return {
+      page: page ? parseInt(page, 10) || 1 : 1,
+      ...(name ? { name } : {}),
+      ...(status ? { status } : {}),
+      ...(species ? { species } : {}),
+      ...(gender ? { gender } : {}),
+    };
   });
 }
