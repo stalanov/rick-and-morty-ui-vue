@@ -49,11 +49,11 @@ import { NGi, NGrid, NPagination, NSpin } from 'naive-ui';
 
 import CharacterCard from '@/components/CharacterCard.vue';
 import CharacterFilters from '@/components/CharacterFilters.vue';
+import NotFoundComponent from '@/components/NotFoundComponent.vue';
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';
 import { getQueryParams } from '@/helpers/navigation';
 import { RouteName } from '@/router/types';
-import NotFoundComponent from '@/components/NotFoundComponent.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -63,16 +63,15 @@ const characters = ref<Character[]>([]);
 const pageCount = ref<number>(1);
 const loading = ref<boolean>(true);
 
-watchEffect(() => {
+watchEffect(async () => {
   loading.value = true;
-  CharacterService.getCharacters(params.value)
-    .then((response) => {
-      characters.value = response?.data?.results || [];
-      pageCount.value = response?.data?.info?.pages || 1;
-    })
-    .finally(() => {
-      loading.value = false;
-    });
+  try {
+    const response = await CharacterService.getCharacters(params.value);
+    characters.value = response?.results || [];
+    pageCount.value = response?.info.pages || 1;
+  } finally {
+    loading.value = false;
+  }
 });
 
 function changePage(page: number) {

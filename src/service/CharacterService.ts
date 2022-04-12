@@ -1,10 +1,16 @@
 import Api, { getQueryString } from './Api';
-import { CharacterRequest, CharacterResponse } from './types';
+import { Character, CharacterRequest, CharacterResponse } from './types';
 
 const url = '/character';
 
 export default {
-  getCharacters(params: CharacterRequest) {
-    return Api.get<CharacterResponse>(`${url}?${getQueryString<CharacterRequest>(params)}`);
+  async getCharacters(params: CharacterRequest) {
+    const result = await Api.get<CharacterResponse>(`${url}?${getQueryString<CharacterRequest>(params)}`);
+    return result?.data;
+  },
+
+  async getCharactersById(id: string | string[]) {
+    const result = await Api.get<Character>(`${url}/${id}`);
+    return result?.data;
   },
 };

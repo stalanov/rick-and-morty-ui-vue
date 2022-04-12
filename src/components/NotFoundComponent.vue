@@ -1,5 +1,5 @@
 <template>
-  <n-card class="not-found" :title="props.title" size="huge">
+  <n-card class="not-found" :bordered="false" :title="props.title" size="huge">
     <template #cover>
       <img class="not-found__image" src="@/assets/404.png" />
     </template>

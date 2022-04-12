@@ -1,10 +1,10 @@
 <template>
   <n-card class="character-card" :hoverable="true">
     <template #cover>
-      <div class="character-card__cover">
+      <RouterLink class="character-card__cover" :to="{ name: RouteName.CHARACTER, params: { id: props.id } }">
         <img src="@/assets/image-placeholder-300.png" />
         <img class="character-card__image" :src="props.image" />
-      </div>
+      </RouterLink>
     </template>
     <template #header>
       <n-ellipsis>
@@ -12,7 +12,7 @@
       </n-ellipsis>
     </template>
 
-    <n-ellipsis> {{ props.species }} - {{ props.status }} </n-ellipsis>
+    <n-ellipsis>{{ props.species }} - {{ props.status }}</n-ellipsis>
 
     <template #action>
       <n-button>
@@ -31,6 +31,7 @@ import { NCard, NButton, NIcon, NEllipsis } from 'naive-ui';
 import { Favorite } from '@vicons/carbon';
 
 import { CharacterStatus } from '@/service/types';
+import { RouteName } from '@/router/types';
 
 interface CharacterCardProps {
   id: number;
@@ -50,6 +51,7 @@ const props = defineProps<CharacterCardProps>();
   }
 
   &__cover {
+    display: block;
     position: relative;
   }
 
