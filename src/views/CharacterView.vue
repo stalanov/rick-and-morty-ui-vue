@@ -3,16 +3,16 @@
     <n-spin v-if="loading" :size="100" />
 
     <div v-else class="character-view__card">
-      <n-card :title="character.name" size="huge">
-        <h1>
+      <n-card class="character-view__info" :title="character.name" size="huge">
+        <p>
           <n-ellipsis>{{ character.species }} - {{ character.status }}</n-ellipsis>
-        </h1>
-        <h2>
+        </p>
+        <p>
           <n-ellipsis>Last known location: {{ character.location.name }}</n-ellipsis>
-        </h2>
-        <h2>
+        </p>
+        <p>
           <n-ellipsis>First seen in: Episode {{ firstSeenIn }}</n-ellipsis>
-        </h2>
+        </p>
 
         <template #action>
           <n-button>
@@ -59,14 +59,25 @@ watchEffect(async () => {
 
 <style lang="scss">
 .character-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 300px;
 
   &__card {
     display: flex;
-    flex-direction: column;
+    flex-flow: column-reverse;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
     @include respond-to('s') {
       flex-direction: row;
+      align-items: unset;
     }
+  }
+
+  &__info {
+    min-width: 0;
   }
 }
 </style>
