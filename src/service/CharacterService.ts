@@ -9,8 +9,14 @@ export default {
     return result?.data;
   },
 
-  async getCharactersById(id: string | string[]) {
-    const result = await Api.get<Character | Character[]>(`${url}/${id}`);
+  async getCharacterById(id: string) {
+    const result = await Api.get<Character>(`${url}/${id}`);
     return result?.data;
+  },
+
+  async getCharactersById(ids: string[]) {
+    const result = await Api.get<Character | Character[]>(`${url}/${ids}`);
+    const list = result?.data;
+    return list ? (Array.isArray(list) ? list : [list]) : [];
   },
 };

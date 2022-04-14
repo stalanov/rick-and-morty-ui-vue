@@ -38,6 +38,7 @@ import { Favorite } from '@vicons/carbon';
 
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';
+import { RouteName } from '@/router/types';
 
 const loading = ref(true);
 const character = ref<Character | null>(null);
@@ -48,8 +49,15 @@ const firstSeenIn = computed(() => {
 const route = useRoute();
 
 watchEffect(async () => {
+  if (route.name !== RouteName.CHARACTER) {
+    return;
+  }
+
+  const { id } = route.params;
+  const characterId = Array.isArray(id) ? id[0] : id;
+
   try {
-    const response = await CharacterService.getCharactersById(route.params.id);
+    const response = await CharacterService.getCharacterById(characterId);
     character.value = response;
   } finally {
     loading.value = false;

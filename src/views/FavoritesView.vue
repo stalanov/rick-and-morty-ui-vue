@@ -39,14 +39,16 @@ const store = useStore(key);
 
 watchEffect(async () => {
   const { favorites } = store.state;
-  if (favorites.length) {
-    loading.value = true;
-    try {
-      const response = await CharacterService.getCharactersById(store.state.favorites);
-      characters.value = Array.isArray(response) ? response : [response] || [];
-    } finally {
-      loading.value = false;
-    }
+  if (!favorites.length) {
+    return;
+  }
+
+  loading.value = true;
+  try {
+    const response = await CharacterService.getCharactersById(favorites);
+    characters.value = response;
+  } finally {
+    loading.value = false;
   }
 });
 </script>
