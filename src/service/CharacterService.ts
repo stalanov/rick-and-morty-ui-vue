@@ -10,7 +10,7 @@ export default {
   },
 
   async getCharactersById(id: string | string[]) {
-    const result = await Api.get<Character>(`${url}/${id}`);
+    const result = await Api.get<Character | Character[]>(`${url}/${id}`);
     return result?.data;
   },
 };
