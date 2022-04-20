@@ -15,13 +15,7 @@
         </p>
 
         <template #action>
-          <n-button>
-            <template #icon>
-              <n-icon>
-                <Favorite />
-              </n-icon>
-            </template>
-          </n-button>
+          <FavoriteButton :id="character.id.toString()" />
         </template>
       </n-card>
 
@@ -33,8 +27,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
-import { NCard, NButton, NIcon, NImage, NEllipsis, NSpin } from 'naive-ui';
-import { Favorite } from '@vicons/carbon';
+import { NCard, NImage, NEllipsis, NSpin } from 'naive-ui';
 
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';

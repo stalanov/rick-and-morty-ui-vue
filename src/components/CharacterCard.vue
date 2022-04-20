@@ -15,23 +15,17 @@
     <n-ellipsis>{{ props.species }} - {{ props.status }}</n-ellipsis>
 
     <template #action>
-      <n-button>
-        <template #icon>
-          <n-icon>
-            <Favorite />
-          </n-icon>
-        </template>
-      </n-button>
+      <FavoriteButton :id="props.id.toString()" />
     </template>
   </n-card>
 </template>
 
 <script setup lang="ts">
-import { NCard, NButton, NIcon, NEllipsis } from 'naive-ui';
-import { Favorite } from '@vicons/carbon';
+import { NCard, NEllipsis } from 'naive-ui';
 
 import { CharacterStatus } from '@/service/types';
 import { RouteName } from '@/router/types';
+import FavoriteButton from './FavoriteButton.vue';
 
 interface CharacterCardProps {
   id: number;

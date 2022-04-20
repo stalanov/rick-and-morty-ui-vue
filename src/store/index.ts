@@ -9,7 +9,11 @@ export const store = createStore<State>({
     theme: Theme.LIGHT,
     favorites: [],
   },
-  getters: {},
+  getters: {
+    isFavoriteId: (state) => (id: string) => {
+      return state.favorites.includes(id);
+    },
+  },
   mutations: {
     [Mutation.SWITCH_THEME](state) {
       state.theme = state.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
@@ -20,7 +24,9 @@ export const store = createStore<State>({
     [Mutation.TOGGLE_FAVORITE](state, id: string) {
       const idx = state.favorites.indexOf(id);
       if (idx >= 0) {
-        state.favorites = [...state.favorites.splice(idx, 1)];
+        const favorites = [...state.favorites];
+        favorites.splice(idx, 1);
+        state.favorites = [...favorites];
       } else {
         state.favorites = [...state.favorites, id];
       }
