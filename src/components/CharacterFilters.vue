@@ -9,21 +9,31 @@
     <n-input-group>
       <n-input clearable v-model:value="nameModel" placeholder="Name" />
 
-      <n-button attr-type="submit">
-        <template #icon>
-          <n-icon>
-            <search />
-          </n-icon>
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <n-button attr-type="submit">
+            <template #icon>
+              <n-icon>
+                <search />
+              </n-icon>
+            </template>
+          </n-button>
         </template>
-      </n-button>
+        Search
+      </n-tooltip>
 
-      <n-button attr-type="reset">
-        <template #icon>
-          <n-icon>
-            <filter-reset />
-          </n-icon>
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <n-button attr-type="reset">
+            <template #icon>
+              <n-icon>
+                <filter-reset />
+              </n-icon>
+            </template>
+          </n-button>
         </template>
-      </n-button>
+        Reset Search and Filters
+      </n-tooltip>
     </n-input-group>
   </n-form>
 </template>
@@ -31,7 +41,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { NButton, NForm, NIcon, NInput, NInputGroup, NSelect } from 'naive-ui';
+import { NButton, NForm, NIcon, NInput, NInputGroup, NSelect, NTooltip } from 'naive-ui';
 import { FilterReset, Search } from '@vicons/carbon';
 
 import { CharacterGender, CharacterRequest, CharacterSpecies, CharacterStatus } from '@/service/types';
