@@ -1,30 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <n-config-provider :theme="theme">
+    <Header />
+    <SideMenu />
+    <Footer />
+  </n-config-provider>
 </template>
 
+<script setup lang="ts">
+import { computed } from 'vue';
+import { darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
+import { useStore } from 'vuex';
+
+import Header from '@/components/Header.vue';
+import SideMenu from '@/components/SideMenu.vue';
+import Footer from '@/components/Footer.vue';
+import { Theme, key } from '@/store/types';
+
+const themeHash = {
+  [Theme.LIGHT]: lightTheme,
+  [Theme.DARK]: darkTheme,
+};
+
+const store = useStore(key);
+const theme = computed(() => themeHash[store.state.theme]);
+</script>
+
 <style lang="scss">
+@import './styles/reset';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: v-sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
