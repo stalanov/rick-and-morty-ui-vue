@@ -1,5 +1,7 @@
 # vue-gridu
 
+[https://vue-gridu.herokuapp.com/](https://vue-gridu.herokuapp.com/)
+
 ## Project setup
 ```
 npm install
