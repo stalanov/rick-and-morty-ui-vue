@@ -1,7 +1,7 @@
 <template>
   <n-layout-footer class="footer" bordered>
-    <div>{{ year }} — GridU — Vue.Js</div>
-    <a class="footer__github" href="https://github.com/gridu/Vue.js-Sergey-Talanov" target="_blank">
+    <div>{{ year }} — Rick and Morty UI — Vue.Js</div>
+    <a class="footer__github" href="https://github.com/stalanov" target="_blank">
       <n-icon :size="22" :component="LogoGithub" />
     </a>
   </n-layout-footer>

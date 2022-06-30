@@ -1,6 +1,4 @@
-# vue-gridu
-
-[https://vue-gridu.herokuapp.com/](https://vue-gridu.herokuapp.com/)
+# rick-and-morty-ui-vue
 
 ## Project setup
 ```
