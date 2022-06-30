@@ -18,7 +18,7 @@ import { key, Mutation } from '@/store/types';
 import { computed } from '@vue/reactivity';
 
 interface FavoriteButtonProps {
-  id: string;
+  id: string | undefined;
 }
 
 const props = defineProps<FavoriteButtonProps>();

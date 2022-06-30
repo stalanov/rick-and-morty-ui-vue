@@ -3,23 +3,23 @@
     <n-spin v-if="loading" :size="100" />
 
     <div v-else class="character-view__card">
-      <n-card class="character-view__info" :title="character.name" size="huge">
+      <n-card class="character-view__info" :title="character?.name" size="huge">
         <p>
-          <n-ellipsis>{{ character.species }} - {{ character.status }}</n-ellipsis>
+          <n-ellipsis>{{ character?.species }} - {{ character?.status }}</n-ellipsis>
         </p>
         <p>
-          <n-ellipsis>Last known location: {{ character.location.name }}</n-ellipsis>
+          <n-ellipsis>Last known location: {{ character?.location.name }}</n-ellipsis>
         </p>
         <p>
           <n-ellipsis>First seen in: Episode {{ firstSeenIn }}</n-ellipsis>
         </p>
 
         <template #action>
-          <FavoriteButton :id="character.id.toString()" />
+          <FavoriteButton :id="character?.id.toString()" />
         </template>
       </n-card>
 
-      <n-image :src="character.image" />
+      <n-image :src="character?.image" />
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ import { NCard, NImage, NEllipsis, NSpin } from 'naive-ui';
 import CharacterService from '@/service/CharacterService';
 import { Character } from '@/service/types';
 import { RouteName } from '@/router/types';
+import FavoriteButton from '@/components/FavoriteButton.vue';
 
 const loading = ref(true);
 const character = ref<Character | null>(null);
