@@ -1,8 +1,8 @@
 <template>
-  <n-space vertical>
-    <n-layout has-sider>
+  <n-space vertical :item-style="expandStyle">
+    <n-layout has-sider class="main__layout">
       <n-layout-sider
-        class="side-menu__layout-sider"
+        class="main__layout-sider"
         bordered
         collapse-mode="width"
         :collapsed-width="64"
@@ -22,7 +22,7 @@
           :options="navOptions"
         />
       </n-layout-sider>
-      <n-layout id="main">
+      <n-layout id="main" :item-style="{ flex: 1 }">
         <router-view />
       </n-layout>
     </n-layout>
@@ -40,10 +40,20 @@ const route = useRoute();
 const activeKey = currentRouteName(route);
 const collapsed = ref(true);
 const triggerStyle = { top: '55px' };
+const expandStyle = { display: 'flex', flexDirection: 'column', flex: 1 };
 </script>
 
 <style scoped lang="scss">
-.side-menu {
+.main {
+  &__layout {
+    display: flex;
+    flex-direction: column;
+
+    &:deep(.n-layout-scroll-container) {
+      flex: 1;
+    }
+  }
+
   &__layout-sider {
     display: none;
 

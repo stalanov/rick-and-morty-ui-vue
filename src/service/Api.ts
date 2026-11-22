@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
-export function getQueryString<T>(params: T): string {
+export function getQueryString<T extends object>(params: T): string {
   return Object.entries(params)
     .map(([key, value]) => `${key}=${value}`)
     .join('&');

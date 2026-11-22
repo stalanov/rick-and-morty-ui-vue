@@ -1,7 +1,7 @@
 <template>
-  <n-config-provider :theme="theme">
+  <n-config-provider :theme="theme" class="app-layout">
     <Header />
-    <SideMenu />
+    <Main class="app-main" />
     <Footer />
   </n-config-provider>
 </template>
@@ -12,7 +12,7 @@ import { darkTheme, lightTheme, NConfigProvider } from 'naive-ui';
 import { useStore } from 'vuex';
 
 import Header from '@/components/Header.vue';
-import SideMenu from '@/components/SideMenu.vue';
+import Main from '@/components/Main.vue';
 import Footer from '@/components/Footer.vue';
 import { Theme, key } from '@/store/types';
 
@@ -28,9 +28,26 @@ const theme = computed(() => themeHash[store.state.theme]);
 <style lang="scss">
 @import './styles/reset';
 
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
 #app {
   font-family: v-sans, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.app-layout {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
 }
 </style>
